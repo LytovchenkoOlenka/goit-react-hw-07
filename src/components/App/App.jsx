@@ -3,7 +3,9 @@ import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
+
 import css from "./App.module.css";
+
 import { fetchContacts } from "../../redux/contactsOps";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
