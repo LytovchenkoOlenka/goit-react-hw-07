@@ -1,10 +1,11 @@
 import css from "./SearchBox.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter, usersQuery } from "../../redux/filtersSlice";
+import { changeFilter } from "../../redux/filtersSlice";
+import { selectUsersQuery } from "../../redux/selectors";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-  const value = useSelector(usersQuery);
+  const value = useSelector(selectUsersQuery);
 
   return (
     <div>
