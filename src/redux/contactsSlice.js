@@ -6,9 +6,9 @@ const handlePending = (state) => {
   state.loading = true;
 };
 
-const handleRejected = (state) => {
+const handleRejected = (state, action) => {
   state.loading = false;
-  state.error = true;
+  state.error = action.payload;
 };
 
 const contactsSlice = createSlice({
@@ -16,7 +16,7 @@ const contactsSlice = createSlice({
   initialState: {
     items: [],
     loading: false,
-    error: false,
+    error: null,
   },
   extraReducers: (builder) =>
     builder
@@ -37,7 +37,10 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter((item) => item.id !== action.payload);
+        const index = state.items.findIndex(
+          (task) => task.id === action.payload.id
+        );
+        state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected),
 });
